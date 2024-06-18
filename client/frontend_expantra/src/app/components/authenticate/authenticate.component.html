@@ -1,0 +1,11 @@
+<p>authenticate works!</p>
+
+<form [formGroup]="authenticateForm" (ngSubmit)="onAuthenticate()">
+  <h1>AUTHENTICATION</h1>
+  <label>EMAIL:</label>
+  <input type="text" name="email" formControlName="email">
+  <label>PASSWORD:</label>
+  <input type="text" name="password" formControlName="password">
+  <button>LOG IN</button>
+</form>
+<h1 routerLink="/forgetpassword">FORGET PASSWORD</h1>

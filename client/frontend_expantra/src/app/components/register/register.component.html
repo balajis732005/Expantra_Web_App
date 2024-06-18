@@ -1,0 +1,21 @@
+<p>register works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+  <h1>REGISTRATION</h1>
+  <LABEL>FIRSTNAME:</LABEL>
+  <input type="text" name="firstName" formControlName="firstName">
+  <LABEL>LASTNAME:</LABEL>
+  <input type="text" name="lastName" formControlName="lastName">
+  <LABEL>GENDER:</LABEL>
+  <input type="text" name="gender" formControlName="gender">
+  <LABEL>AGE:</LABEL>
+  <input type="text" name="age" formControlName="age">
+  <LABEL>MOBILE NUMBER:</LABEL>
+  <input type="text" name="mobileNumber" formControlName="mobileNumber">
+  <label >EMAIL:</label>
+  <input type="text" name="email" formControlName="email">
+  <label>PASSWORD:</label>
+  <input type="text" name="password" formControlName="password">
+  <label>ROLE:</label>
+  <input type="text" name="role" formControlName="role">
+  <button>REGISTER</button>
+</form>

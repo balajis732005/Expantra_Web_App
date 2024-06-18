@@ -1,0 +1,17 @@
+<p>update works!</p>
+<form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+  <h1>REGISTRATION</h1>
+  <LABEL>FIRSTNAME:</LABEL>
+  <input type="text" name="firstName" formControlName="firstName">
+  <LABEL>LASTNAME:</LABEL>
+  <input type="text" name="lastName" formControlName="lastName">
+  <LABEL>GENDER:</LABEL>
+  <input type="text" name="gender" formControlName="gender">
+  <LABEL>MOBILE NUMBER:</LABEL>
+  <input type="text" name="mobileNumber" formControlName="mobileNumber">
+  <label >EMAIL:</label>
+  <input type="text" name="email" formControlName="email">
+  <label>PASSWORD:</label>
+  <input type="text" name="password" formControlName="password">
+  <button>UPDATE</button>
+</form>

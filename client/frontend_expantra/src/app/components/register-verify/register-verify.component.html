@@ -1,0 +1,7 @@
+<p>register-verify works!</p>
+<form [formGroup]="registerVerifyForm" (ngSubmit)="onRegisterVerify()">
+  <h1>REGISTER VERIFY</h1>
+  <label>VERIFICATION CODE</label>
+  <input type="text" name="activationCode" formControlName="activationCode">
+  <button>SUBMIT</button>
+</form>

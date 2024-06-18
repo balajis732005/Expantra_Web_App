@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify_Email</title>
+    <style>
+        .container{
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .welcome{
+            text-align: center;
+            font-size: x-large;
+        }
+        .email_verify{
+            font-size: xx-large;
+        }
+        .username{
+            font-size: larger;
+            font-family: sans-serif;
+        }
+        .middle{
+            font-size: large;
+        }
+        .activation_code{
+            font-size: xxx-large;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="welcome">Welcome to EXPANTRA</p>
+        <p class="email_verify">Email Verification</p>
+        <p class="username" th:text="'Hello'+' '+${userName}+','"></p>
+        <p class="middle">Thank you for Creating Account with us, Here is your Activation Code You can use this and create your account successfully</p>
+        <p class="activation_code" th:text="${activationCode}"></p>
+    </div>
+</body>
+</html>
