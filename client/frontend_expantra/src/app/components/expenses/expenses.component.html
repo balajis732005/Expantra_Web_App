@@ -1,1 +1,51 @@
-<p>expenses works!</p>
+<form [formGroup]="filterSortForm" (ngSubmit)="onReadExpensesSubmit()">
+  <label>SEARCH FOR EXPENSES : </label>
+  <input type="text" formControlName="expenseSearch">
+  <label>SORT BY :</label>
+  <select formControlName="sortBy">
+    <option value="">None</option>
+    <option value="NAME">ExpenseName</option>
+    <option value="AMOUNT">ExpenseAmount</option>
+  </select>
+  <label>SORT ORDER :</label>
+  <select formControlName="sortOrder">
+    <option value="">None</option>
+    <option value="ASC">ASC</option>
+    <option value="DESC">DESC</option>
+  </select>
+  <label>PAST MONTHS :</label>
+  <input type="text" formControlName="pastMonths">
+  <button>SUBMIT</button>
+</form>
+<button (click)="onCreateNewExpense('800ms', '500ms')">CREATE EXPENSE</button>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Amount</th>
+      <th>CreatedBy</th>
+      <th>CreatedDate</th>
+      <th>LastModifiedData</th>
+      <th>Update</th>
+    </tr>
+    </thead>
+    <body>
+    <tr *ngFor="let expense of displayExpanses; let i = index">
+      <th>{{i+1}}</th>
+      <td>{{expense.expenseName}}</td>
+      <td>{{expense.expenseDescription}}</td>
+      <td>{{expense.expenseCategory}}</td>
+      <td>{{expense.expenseAmount}}</td>
+      <td>{{expense.expenseCreatedBy}}</td>
+      <td>{{expense.expenseCreatedDate}}</td>
+      <td>{{expense.expenseLastModifiedDate}}</td>
+      <td><button (click)="onUpdateExpense(i,'800ms', '500ms')">UPDATE</button></td>
+      <td><button (click)="onDeleteExpanse(i,'800ms','500ms')">DELETE</button></td>
+    </tr>
+    </body>
+  </table>
+</div>

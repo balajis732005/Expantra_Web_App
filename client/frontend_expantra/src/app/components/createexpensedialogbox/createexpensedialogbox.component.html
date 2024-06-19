@@ -1,0 +1,14 @@
+<form [formGroup]="createExpenseForm">
+  <label>EXPENSE NAME :</label>
+  <input type="text" formControlName="expenseName">
+  <label>EXPENSE DESCRIPTION :</label>
+  <input type="text" formControlName="expenseDescription">
+  <label>EXPENSE CATEGORY :</label>
+  <input type="text" formControlName="expenseCategory">
+  <label>EXPENSE AMOUNT :</label>
+  <input type="text" formControlName="expenseAmount">
+  <label>EXPENSE CREATED BY :</label>
+  <input type="text" formControlName="expenseCreatedBy">
+  <button mat-dialog-close (click)="onCreateExpense()">CREATE</button>
+  <button mat-dialog-close>CANCEL</button>
+</form>

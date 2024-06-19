@@ -8,7 +8,6 @@ import {AppState} from "../../store/state/app.state";
 import {userDetailsSelector} from "../../store/selector/userDetails.selctor";
 import {UserDetailsModel} from "../../models/userDetails.model";
 import {NetamountService} from "../../services/netamount/netamount.service";
-import {PositiveResponseModel} from "../../models/PositiveResponse.model";
 import {NetAmountResponseModel} from "../../models/NetAmountResponseModel";
 
 @Component({
@@ -25,7 +24,7 @@ export class HomeComponent implements OnInit{
   constructor(
     public dialog: MatDialog,
     private store : Store<AppState>,
-    private netAmountService : NetamountService
+    private netAmountService : NetamountService,
   ) {
   }
 

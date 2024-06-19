@@ -7,6 +7,7 @@ import {ForgetpasswordComponent} from "./components/forgetpassword/forgetpasswor
 import {ResetpasswordComponent} from "./components/resetpassword/resetpassword.component";
 import {HomeComponent} from "./components/home/home.component";
 import {UpdateComponent} from "./components/update/update.component";
+import {ExpensesComponent} from "./components/expenses/expenses.component";
 
 export const routes: Routes = [
   {path : '', component : WelcomeComponent},
@@ -16,5 +17,6 @@ export const routes: Routes = [
   {path : 'forgetpassword', component : ForgetpasswordComponent},
   {path : 'resetpassword', component : ResetpasswordComponent},
   {path : 'home', component : HomeComponent},
-  {path : 'update', component : UpdateComponent}
+  {path : 'update', component : UpdateComponent},
+  {path : 'expenses',component : ExpensesComponent},
 ];
