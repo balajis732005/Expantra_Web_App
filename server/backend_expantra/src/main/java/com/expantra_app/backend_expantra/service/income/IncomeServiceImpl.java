@@ -114,7 +114,7 @@ public class IncomeServiceImpl implements IncomeService{
 
     //UPDATE
     @Override
-    public Income incomeUpdate(IncomeUpdateRequestDto incomeUpdateRequestDto) {
+    public PositiveResponseDto incomeUpdate(IncomeUpdateRequestDto incomeUpdateRequestDto) {
 
         Income oldIncome = incomeRepository.findByIncomeId(incomeUpdateRequestDto.getIncomeId())
                 .orElseThrow(() -> new IncomeNotFoundException("Income Not Found"));
@@ -131,7 +131,9 @@ public class IncomeServiceImpl implements IncomeService{
                 .incomeLastModifiedDate(LocalDateTime.now())
                 .build();
         incomeRepository.save(updateIncome);
-        return updateIncome;
+        var positive = PositiveResponseDto.builder()
+                .successMessage("Income Updated Successfully");
+        return positive.build();
     }
 
     //DELETE

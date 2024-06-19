@@ -1,9 +1,6 @@
 package com.expantra_app.backend_expantra.controller;
 
-import com.expantra_app.backend_expantra.dto.ExpensesCreateRequestDto;
-import com.expantra_app.backend_expantra.dto.ExpensesReadRequestDto;
-import com.expantra_app.backend_expantra.dto.ExpensesUpdateRequestDto;
-import com.expantra_app.backend_expantra.dto.PositiveResponseDto;
+import com.expantra_app.backend_expantra.dto.*;
 import com.expantra_app.backend_expantra.entity.Expenses;
 import com.expantra_app.backend_expantra.service.expenses.ExpensesService;
 import lombok.RequiredArgsConstructor;
@@ -26,14 +23,14 @@ public class ExpensesController {
     }
 
     @PostMapping("/expenses/read")
-    public List<Expenses> getExpenses(
+    public List<ExpensesReadResponseDto> getExpenses(
             @RequestBody ExpensesReadRequestDto expensesReadRequestDto
     ){
         return expensesService.getExpenses(expensesReadRequestDto);
     }
 
     @PostMapping("/expenses/update")
-    public Expenses expenseUpdate(
+    public PositiveResponseDto expenseUpdate(
             @RequestBody ExpensesUpdateRequestDto expensesUpdateRequestDto
     ){
         return expensesService.expenseUpdate(expensesUpdateRequestDto);

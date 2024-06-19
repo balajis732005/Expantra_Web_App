@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -46,9 +47,34 @@ public class ExpensesServiceImpl implements ExpensesService {
         return positive.build();
     }
 
+    private List<ExpensesReadResponseDto> expenseFormat(List<Expenses> expensesList){
+        List<ExpensesReadResponseDto> formatedExpenses = new ArrayList<>();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");
+
+        for(Expenses expense : expensesList){
+            var formatExpense = ExpensesReadResponseDto.builder()
+                    .expenseId(expense.getExpenseId())
+                    .expenseName(expense.getExpenseName())
+                    .expenseDescription(expense.getExpenseDescription())
+                    .expenseCategory(expense.getExpenseCategory())
+                    .expenseAmount(expense.getExpenseAmount())
+                    .expenseCreatedBy(expense.getExpenseCreatedBy())
+                    .expenseCreatedDate(expense.getExpenseCreatedDate().format(formatter))
+                    .expenseLastModifiedDate(
+                            expense.getExpenseLastModifiedDate() !=null ?
+                            expense.getExpenseLastModifiedDate().format(formatter) :
+                                    ""
+                    )
+                    .build();
+            formatedExpenses.add(formatExpense);
+        }
+        return formatedExpenses;
+    }
+
     //READ
     @Override
-    public List<Expenses> getExpenses(ExpensesReadRequestDto expensesReadRequestDto) {
+    public List<ExpensesReadResponseDto> getExpenses(ExpensesReadRequestDto expensesReadRequestDto) {
 
         User userDB = userRepository.findByEmail(expensesReadRequestDto.getEmail())
                 .orElseThrow(() -> new UserEmailNotFoundException("User Email Not Found"));
@@ -58,7 +84,7 @@ public class ExpensesServiceImpl implements ExpensesService {
         }
 
         List<Expenses> filteredSortedExpenses;
-        if(!Objects.equals(expensesReadRequestDto.getExpenseSearchName(), "")){
+        if(!expensesReadRequestDto.getExpenseSearchName().isEmpty()){
             filteredSortedExpenses = expensesRepository.findByExpenseNameContainingIgnoreCaseOrExpenseDescriptionContainingIgnoreCaseOrExpenseCategoryContainingIgnoreCase(
                     expensesReadRequestDto.getExpenseSearchName(), expensesReadRequestDto.getExpenseSearchName(), expensesReadRequestDto.getExpenseSearchName()
             );
@@ -68,17 +94,19 @@ public class ExpensesServiceImpl implements ExpensesService {
 
         Long userIdExpenses = userDB.getUserId();
 
+        filteredSortedExpenses = filteredSortedExpenses.stream()
+                .filter((Expenses obj) -> userIdExpenses.equals(obj.getUserId()))
+                .toList();
+
         if (expensesReadRequestDto.getPast() == 0L) {
             if (Objects.equals(expensesReadRequestDto.getSortOrder(), "ASC") ||
                     Objects.equals(expensesReadRequestDto.getSortOrder(), "DESC")) {
                 if (Objects.equals(expensesReadRequestDto.getSortBy(), "NAME")) {
                     filteredSortedExpenses = filteredSortedExpenses.stream()
-                            .filter((Expenses obj) -> userIdExpenses.equals(obj.getUserId()))
                             .sorted(Comparator.comparing(Expenses::getExpenseName))
                             .toList();
                 } else{
                     filteredSortedExpenses = filteredSortedExpenses.stream()
-                            .filter((Expenses obj) -> userIdExpenses.equals(obj.getUserId()))
                             .sorted(Comparator.comparingDouble(Expenses::getExpenseAmount))
                             .toList();
                 }
@@ -91,13 +119,11 @@ public class ExpensesServiceImpl implements ExpensesService {
                     Objects.equals(expensesReadRequestDto.getSortOrder(), "DESC")) {
                 if (Objects.equals(expensesReadRequestDto.getSortBy(), "NAME")) {
                     filteredSortedExpenses = filteredSortedExpenses.stream()
-                            .filter((Expenses obj) -> userIdExpenses.equals(obj.getUserId()))
                             .filter((Expenses obj) -> obj.getExpenseCreatedDate().isAfter(LocalDateTime.now().minusMonths(expensesReadRequestDto.getPast())))
                             .sorted(Comparator.comparing(Expenses::getExpenseName))
                             .toList();
                 }else{
                     filteredSortedExpenses = filteredSortedExpenses.stream()
-                            .filter((Expenses obj) -> userIdExpenses.equals(obj.getUserId()))
                             .filter((Expenses obj) -> obj.getExpenseCreatedDate().isAfter(LocalDateTime.now().minusMonths(expensesReadRequestDto.getPast())))
                             .sorted(Comparator.comparingDouble(Expenses::getExpenseAmount))
                             .toList();
@@ -107,13 +133,14 @@ public class ExpensesServiceImpl implements ExpensesService {
                 filteredSortedExpenses = filteredSortedExpenses.reversed();
             }
         }
-        return filteredSortedExpenses;
+
+        return expenseFormat(filteredSortedExpenses);
 
     }
 
     //UPDATE
     @Override
-    public Expenses expenseUpdate(ExpensesUpdateRequestDto expensesUpdateRequestDto) {
+    public PositiveResponseDto expenseUpdate(ExpensesUpdateRequestDto expensesUpdateRequestDto) {
 
         Expenses oldExpense = expensesRepository.findById(expensesUpdateRequestDto.getExpenseId())
                 .orElseThrow(() -> new ExpenseNotFoundException("Expenses Not Found"));
@@ -132,7 +159,9 @@ public class ExpensesServiceImpl implements ExpensesService {
 
         expensesRepository.save(updateExpense);
 
-        return updateExpense;
+        var positive = PositiveResponseDto.builder()
+                .successMessage("Expense Updated Successfully");
+        return positive.build();
     }
 
     //DELETE

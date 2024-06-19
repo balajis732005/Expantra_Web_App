@@ -30,7 +30,7 @@ public class IncomeController {
     }
 
     @PostMapping("/income/update")
-    public Income incomeUpdate(
+    public PositiveResponseDto incomeUpdate(
             @RequestBody IncomeUpdateRequestDto incomeUpdateRequestDto
     ){
         return incomeService.incomeUpdate(incomeUpdateRequestDto);

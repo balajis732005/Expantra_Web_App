@@ -16,7 +16,7 @@ public interface IncomeService {
     List<Income> getIncome(IncomeReadRequestDto incomeReadRequestDto);
 
     //UPDATE
-    Income incomeUpdate(IncomeUpdateRequestDto incomeUpdateRequestDto);
+    PositiveResponseDto incomeUpdate(IncomeUpdateRequestDto incomeUpdateRequestDto);
 
     //DELETE
     PositiveResponseDto incomeDelete(Long incomeIdToDelete);

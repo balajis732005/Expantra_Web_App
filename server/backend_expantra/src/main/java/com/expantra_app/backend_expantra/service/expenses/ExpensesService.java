@@ -1,9 +1,6 @@
 package com.expantra_app.backend_expantra.service.expenses;
 
-import com.expantra_app.backend_expantra.dto.ExpensesCreateRequestDto;
-import com.expantra_app.backend_expantra.dto.ExpensesReadRequestDto;
-import com.expantra_app.backend_expantra.dto.ExpensesUpdateRequestDto;
-import com.expantra_app.backend_expantra.dto.PositiveResponseDto;
+import com.expantra_app.backend_expantra.dto.*;
 import com.expantra_app.backend_expantra.entity.Expenses;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +13,10 @@ public interface ExpensesService {
     PositiveResponseDto expenseCreate(ExpensesCreateRequestDto expensesCreateRequestDto);
 
     //READ
-    List<Expenses> getExpenses(ExpensesReadRequestDto expensesReadRequestDto);
+    List<ExpensesReadResponseDto> getExpenses(ExpensesReadRequestDto expensesReadRequestDto);
 
     //UPDATE
-    Expenses expenseUpdate(ExpensesUpdateRequestDto expensesUpdateRequestDto);
+    PositiveResponseDto expenseUpdate(ExpensesUpdateRequestDto expensesUpdateRequestDto);
 
     //DELETE
     PositiveResponseDto expenseDelete(Long expenseIdToDelete);
