@@ -1,0 +1,14 @@
+<form [formGroup]="createIncomeForm">
+  <label>INCOME NAME :</label>
+  <input type="text" formControlName="incomeName">
+  <label>INCOME DESCRIPTION :</label>
+  <input type="text" formControlName="incomeDescription">
+  <label>INCOME CATEGORY :</label>
+  <input type="text" formControlName="incomeCategory">
+  <label>INCOME AMOUNT :</label>
+  <input type="text" formControlName="incomeAmount">
+  <label>INCOME CREATED BY :</label>
+  <input type="text" formControlName="incomeCreatedBy">
+  <button mat-dialog-close (click)="onCreateIncome()">CREATE</button>
+  <button mat-dialog-close>CANCEL</button>
+</form>

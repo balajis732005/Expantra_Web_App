@@ -8,6 +8,7 @@ import {ResetpasswordComponent} from "./components/resetpassword/resetpassword.c
 import {HomeComponent} from "./components/home/home.component";
 import {UpdateComponent} from "./components/update/update.component";
 import {ExpensesComponent} from "./components/expenses/expenses.component";
+import {IncomeComponent} from "./components/income/income.component";
 
 export const routes: Routes = [
   {path : '', component : WelcomeComponent},
@@ -19,4 +20,5 @@ export const routes: Routes = [
   {path : 'home', component : HomeComponent},
   {path : 'update', component : UpdateComponent},
   {path : 'expenses',component : ExpensesComponent},
+  {path : 'income', component : IncomeComponent}
 ];

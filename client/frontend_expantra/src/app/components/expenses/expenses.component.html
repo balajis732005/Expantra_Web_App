@@ -31,9 +31,9 @@
       <th>CreatedDate</th>
       <th>LastModifiedData</th>
       <th>Update</th>
+      <th>Delete</th>
     </tr>
     </thead>
-    <body>
     <tr *ngFor="let expense of displayExpanses; let i = index">
       <th>{{i+1}}</th>
       <td>{{expense.expenseName}}</td>
@@ -46,6 +46,5 @@
       <td><button (click)="onUpdateExpense(i,'800ms', '500ms')">UPDATE</button></td>
       <td><button (click)="onDeleteExpanse(i,'800ms','500ms')">DELETE</button></td>
     </tr>
-    </body>
   </table>
 </div>
