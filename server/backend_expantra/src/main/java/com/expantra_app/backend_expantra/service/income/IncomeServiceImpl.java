@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -48,9 +50,34 @@ public class IncomeServiceImpl implements IncomeService{
         return positive.build();
     }
 
+    private List<IncomeReadResponseDto> incomeFormat(List<Income> incomeList){
+        List<IncomeReadResponseDto> formatedIncome = new ArrayList<>();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");
+
+        for(Income income : incomeList){
+            var formatIncome = IncomeReadResponseDto.builder()
+                    .incomeId(income.getIncomeId())
+                    .incomeName(income.getIncomeName())
+                    .incomeDescription(income.getIncomeDescription())
+                    .incomeCategory(income.getIncomeCategory())
+                    .incomeAmount(income.getIncomeAmount())
+                    .incomeCreatedBy(income.getIncomeCreatedBy())
+                    .incomeCreatedDate(income.getIncomeCreatedDate().format(formatter))
+                    .incomeLastModifiedDate(
+                            income.getIncomeLastModifiedDate() !=null ?
+                                    income.getIncomeLastModifiedDate().format(formatter) :
+                                    ""
+                    )
+                    .build();
+            formatedIncome.add(formatIncome);
+        }
+        return formatedIncome;
+    }
+
     //READ
     @Override
-    public List<Income> getIncome(IncomeReadRequestDto incomeReadRequestDto) {
+    public List<IncomeReadResponseDto> getIncome(IncomeReadRequestDto incomeReadRequestDto) {
 
         User userDB = userRepository.findByEmail(incomeReadRequestDto.getEmail())
                 .orElseThrow(() -> new UserEmailNotFoundException("User Email Not Found"));
@@ -70,17 +97,19 @@ public class IncomeServiceImpl implements IncomeService{
 
         Long userIdIncome = userDB.getUserId();
 
+        filteredSortedIncome = filteredSortedIncome.stream()
+                .filter((Income obj) -> userIdIncome.equals(obj.getUserId()))
+                .toList();
+
         if (incomeReadRequestDto.getPast() == 0L) {
             if (Objects.equals(incomeReadRequestDto.getSortOrder(), "ASC") ||
                     Objects.equals(incomeReadRequestDto.getSortOrder(), "DESC")) {
                 if (Objects.equals(incomeReadRequestDto.getSortBy(), "NAME")) {
                     filteredSortedIncome = filteredSortedIncome.stream()
-                            .filter((Income obj) -> userIdIncome.equals(obj.getUserId()))
                             .sorted(Comparator.comparing(Income::getIncomeName))
                             .toList();
                 } else{
                     filteredSortedIncome = filteredSortedIncome.stream()
-                            .filter((Income obj) -> userIdIncome.equals(obj.getUserId()))
                             .sorted(Comparator.comparingDouble(Income::getIncomeAmount))
                             .toList();
                 }
@@ -93,13 +122,11 @@ public class IncomeServiceImpl implements IncomeService{
                     Objects.equals(incomeReadRequestDto.getSortOrder(), "DESC")) {
                 if (Objects.equals(incomeReadRequestDto.getSortBy(), "NAME")) {
                     filteredSortedIncome = filteredSortedIncome.stream()
-                            .filter((Income obj) -> userIdIncome.equals(obj.getUserId()))
                             .filter((Income obj) -> obj.getIncomeCreatedDate().isAfter(LocalDateTime.now().minusMonths(incomeReadRequestDto.getPast())))
                             .sorted(Comparator.comparing(Income::getIncomeName))
                             .toList();
                 }else{
                     filteredSortedIncome = filteredSortedIncome.stream()
-                            .filter((Income obj) -> userIdIncome.equals(obj.getUserId()))
                             .filter((Income obj) -> obj.getIncomeCreatedDate().isAfter(LocalDateTime.now().minusMonths(incomeReadRequestDto.getPast())))
                             .sorted(Comparator.comparingDouble(Income::getIncomeAmount))
                             .toList();
@@ -109,7 +136,7 @@ public class IncomeServiceImpl implements IncomeService{
                 filteredSortedIncome = filteredSortedIncome.reversed();
             }
         }
-        return filteredSortedIncome;
+        return incomeFormat(filteredSortedIncome);
     }
 
     //UPDATE

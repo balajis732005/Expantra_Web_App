@@ -23,7 +23,7 @@ public class IncomeController {
     }
 
     @PostMapping("/income/read")
-    public List<Income> getIncome(
+    public List<IncomeReadResponseDto> getIncome(
             @RequestBody IncomeReadRequestDto incomeReadRequestDto
     ){
         return incomeService.getIncome(incomeReadRequestDto);

@@ -13,7 +13,7 @@ public interface IncomeService {
     PositiveResponseDto incomeCreate(IncomeCreateRequestDto incomeCreateRequestDto);
 
     //READ
-    List<Income> getIncome(IncomeReadRequestDto incomeReadRequestDto);
+    List<IncomeReadResponseDto> getIncome(IncomeReadRequestDto incomeReadRequestDto);
 
     //UPDATE
     PositiveResponseDto incomeUpdate(IncomeUpdateRequestDto incomeUpdateRequestDto);
