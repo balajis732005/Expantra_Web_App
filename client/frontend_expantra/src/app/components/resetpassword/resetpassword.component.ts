@@ -2,15 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {ForgetPasswordService} from "../../services/ForgetPassword/forgetpassword.service";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ResetPasswordModel} from "../../models/ResetPassword.model";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
 
 @Component({
   selector: 'app-resetpassword',
   standalone: true,
-  imports: [
-    ReactiveFormsModule
-  ],
+    imports: [
+        ReactiveFormsModule,
+        RouterLink
+    ],
   templateUrl: './resetpassword.component.html',
   styleUrl: './resetpassword.component.css'
 })

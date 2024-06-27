@@ -1,21 +1,109 @@
-<p>register works!</p>
-<form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-  <h1>REGISTRATION</h1>
-  <LABEL>FIRSTNAME:</LABEL>
-  <input type="text" name="firstName" formControlName="firstName">
-  <LABEL>LASTNAME:</LABEL>
-  <input type="text" name="lastName" formControlName="lastName">
-  <LABEL>GENDER:</LABEL>
-  <input type="text" name="gender" formControlName="gender">
-  <LABEL>AGE:</LABEL>
-  <input type="text" name="age" formControlName="age">
-  <LABEL>MOBILE NUMBER:</LABEL>
-  <input type="text" name="mobileNumber" formControlName="mobileNumber">
-  <label >EMAIL:</label>
-  <input type="text" name="email" formControlName="email">
-  <label>PASSWORD:</label>
-  <input type="text" name="password" formControlName="password">
-  <label>ROLE:</label>
-  <input type="text" name="role" formControlName="role">
-  <button>REGISTER</button>
-</form>
+<section class="w-[100%] h-[100%] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex flex-col px-3 py-10">
+
+  <div class="flex justify-around w-[100%] py-5">
+    <button
+      class="font-medium text-white w-16 h-10 border-2 border-white rounded-2xl px-2 py-2
+      hover:text-black hover:border-black"
+      routerLink="/register"
+    >
+      Sign In
+    </button>
+    <button
+      class="font-medium text-white w-16 h-10 border-2 border-white rounded-2xl px-2 py-2
+      hover:text-black hover:border-black"
+      routerLink="/authenticate"
+    >
+      Log In
+    </button>
+  </div>
+
+  <p class="text-3xl font-extrabold py-12 text-center mx-auto">
+    <span class="text-white">EXPANTRA</span> - Your Personalize Tracker
+  </p>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()"
+        class="flex flex-col space-y-5 md:items-center md:mx-auto">
+    <p class="font-bold text-xl text-center">Create Your Account</p>
+
+    <div class="flex flex-col space-y-3">
+      <label class="font-semibold md:text-xl">First Name:</label>
+      <input type="text"
+             name="firstName"
+             formControlName="firstName"
+             placeholder="Enter Your First Name"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+
+    <div class="flex flex-col space-y-3">
+      <label class="font-semibold md:text-xl">Last Name:</label>
+      <input type="text"
+             name="lastName"
+             formControlName="lastName"
+             placeholder="Enter Your Last Name"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+
+    <div class="flex flex-col space-y-3">
+      <label class="font-semibold md:text-xl">Gender:</label>
+      <input type="text"
+             name="gender"
+             formControlName="gender"
+             placeholder="Enter Your Gender"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+
+    <div class="flex flex-col space-y-3">
+      <label class="font-semibold md:text-xl">Age:</label>
+      <input type="text"
+             name="age"
+             formControlName="age"
+             placeholder="Enter Your Age"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+
+    <div class="flex flex-col space-y-3">
+      <label class="font-semibold md:text-xl">Mobile Number:</label>
+      <input type="text"
+             name="mobileNumber"
+             formControlName="mobileNumber"
+             placeholder="Enter Your Mobile Number"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+
+    <div class="flex flex-col space-y-3">
+      <label class="font-semibold md:text-xl">Email:</label>
+      <input type="text"
+             name="email"
+             formControlName="email"
+             placeholder="Enter Your Email"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+
+    <div class="flex flex-col space-y-3">
+      <label class="font-semibold md:text-xl">Password:</label>
+      <input type="text"
+             name="password"
+             formControlName="password"
+             placeholder="Enter Your Password"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+
+    <div class="flex flex-col space-y-3">
+      <label class="font-semibold md:text-xl text-start">Role:</label>
+      <input type="text"
+             name="role"
+             formControlName="role"
+             placeholder="Minor/Major"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+
+    <button class="h-12 w-24 bg-black rounded-full text-white font-bold px-5 py-3 items-center mx-auto
+    hover:bg-blue-600">
+      Register
+    </button>
+  </form>
+</section>
+
+<div class="w-[100%] h-12 bg-black flex flex-col justify-center items-center">
+  <p class="text-white font-thin">Expantra-Expense Tracking</p>
+</div>

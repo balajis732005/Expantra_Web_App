@@ -3,13 +3,14 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {RegisterRequestModel} from "../../models/RegisterRequest.model";
 import {RegisterService} from "../../services/Register/register.service";
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -26,7 +27,7 @@ export class RegisterComponent {
     firstName : new FormControl("",[Validators.required]),
     lastName : new FormControl("",[Validators.required]),
     gender : new FormControl("",[Validators.required]),
-    age : new FormControl(-1,[Validators.required]),
+    age : new FormControl(0,[Validators.required]),
     mobileNumber : new FormControl("",[Validators.required]),
     email : new FormControl("",[Validators.required,Validators.email]),
     password : new FormControl("",[Validators.required,Validators.minLength(6)]),

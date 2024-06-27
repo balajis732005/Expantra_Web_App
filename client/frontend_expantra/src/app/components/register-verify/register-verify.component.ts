@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {VerificationRequestModel} from "../../models/VerificationRequest.model";
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
 import {RegisterService} from "../../services/Register/register.service";
@@ -8,9 +8,10 @@ import {RegisterService} from "../../services/Register/register.service";
 @Component({
   selector: 'app-register-verify',
   standalone: true,
-  imports: [
-    ReactiveFormsModule
-  ],
+    imports: [
+        ReactiveFormsModule,
+        RouterLink
+    ],
   templateUrl: './register-verify.component.html',
   styleUrl: './register-verify.component.css'
 })

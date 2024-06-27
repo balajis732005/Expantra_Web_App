@@ -4,14 +4,15 @@ import {ForgetPasswordService} from "../../services/ForgetPassword/forgetpasswor
 import {ForgetPasswordEmailSendModel} from "../../models/ForgetPasswordEmailSend.model";
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
 import {VerificationRequestModel} from "../../models/VerificationRequest.model";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-forgetpassword',
   standalone: true,
-  imports: [
-    ReactiveFormsModule
-  ],
+    imports: [
+        ReactiveFormsModule,
+        RouterLink
+    ],
   templateUrl: './forgetpassword.component.html',
   styleUrl: './forgetpassword.component.css'
 })

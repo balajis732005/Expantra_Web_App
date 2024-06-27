@@ -20,6 +20,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([httpInterceptor]),withFetch()),
     provideStore(reducers,{metaReducers}),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects([AuthenticationEffect,UpdateEffect]), provideAnimationsAsync(), provideAnimationsAsync()
+    provideEffects([AuthenticationEffect,UpdateEffect]), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync()
   ]
 };

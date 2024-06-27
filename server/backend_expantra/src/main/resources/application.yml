@@ -18,6 +18,8 @@ spring:
       database-platform: org.hibernate.dialect.postgreSQLDialect
 
 #FOR EMAIL SENDER SERVICE
+  #<Your_From_Email>
+  #<Your_App_Password>
   mail:
     host: smtp.gmail.com
     port: 587

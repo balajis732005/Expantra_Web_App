@@ -1,7 +1,46 @@
-<p>register-verify works!</p>
-<form [formGroup]="registerVerifyForm" (ngSubmit)="onRegisterVerify()">
-  <h1>REGISTER VERIFY</h1>
-  <label>VERIFICATION CODE</label>
-  <input type="text" name="activationCode" formControlName="activationCode">
-  <button>SUBMIT</button>
-</form>
+<section class="w-[100%] h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex flex-col px-3 py-10">
+
+  <div class="flex justify-around w-[100%] py-5">
+    <button
+      class="font-medium text-white w-16 h-10 border-2 border-white rounded-2xl px-2 py-2
+      hover:text-black hover:border-black"
+      routerLink="/register"
+    >
+      Sign In
+    </button>
+    <button
+      class="font-medium text-white w-16 h-10 border-2 border-white rounded-2xl px-2 py-2
+      hover:text-black hover:border-black"
+      routerLink="/authenticate"
+    >
+      Log In
+    </button>
+  </div>
+
+  <p class="text-3xl font-extrabold py-12 text-center mx-auto">
+    <span class="text-white">EXPANTRA</span> - Your Personalize Tracker
+  </p>
+
+  <form [formGroup]="registerVerifyForm" (ngSubmit)="onRegisterVerify()"
+        class="flex flex-col space-y-5 md:items-center md:mx-auto">
+    <p class="font-bold text-xl text-center">Registration Verification</p>
+    <div class="flex flex-col space-y-3">
+      <label class="font-semibold md:text-xl">Verification Code</label>
+      <input type="text"
+             name="activationCode"
+             formControlName="activationCode"
+             placeholder="Enter the Verification Code"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+    <button class="h-12 w-24 bg-black rounded-full text-white font-bold px-5 py-3 items-center mx-auto
+    hover:bg-blue-600">
+      Verify
+    </button>
+
+  </form>
+
+</section>
+
+<div class="w-[100%] h-12 bg-black flex flex-col justify-center items-center">
+  <p class="text-white font-thin">Expantra-Expense Tracking</p>
+</div>
