@@ -1,13 +1,23 @@
+<app-navbar class="w-full fixed top-0 border-b-2 border-white"></app-navbar>
+<div class="mt-16"></div>
+<section class="w-[100%] h-[100%] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+  flex flex-col px-3 py-10 items-center mx-auto space-y-5">
+  <div class="border-2 border-white rounded-2xl px-5 py-5 flex flex-col items-center space-y-2
+  md:px-24 md:py-12">
+    <label class="text-2xl font-bold md:text-3xl">NET EXPENSES</label>
+    <p class="text-xl font-semibold md:text-2xl">😎RS.{{netExpenses}}12345</p>
+  </div>
+  <div class="border-2 border-white rounded-2xl px-9 py-5 flex flex-col items-center space-y-2
+  md:px-28 md:py-12">
+    <label class="text-2xl font-bold md:text-3xl">NET INCOME</label>
+    <p class="text-xl font-semibold md:text-2xl">🥳RS.{{netIncome}}23435</p>
+  </div>
+  <div class="border-2 border-white rounded-2xl px-8 py-5 flex flex-col items-center space-y-2
+md:px-28 md:py-12">
+    <label class="text-2xl font-bold md:text-3xl">NET SAVINGS</label>
+    <p class="text-xl font-semibold md:text-2xl">😇RS.{{netSavings}}4357</p>
+  </div>
+  <p routerLink="/expenses" class="text-xl font-bold text-white cursor-pointer md:text-2xl">Edit Your Expenses</p>
+  <p routerLink="/income" class="text-xl font-bold text-white cursor-pointer md:text-2xl">Edit Your Income</p>
 
-<label>EXPENSES :</label>
-<h1>{{netExpenses}}</h1>
-<label>INCOME :</label>
-<h1>{{netIncome}}</h1>
-<label>SAVINGS :</label>
-<h1>{{netSavings}}</h1>
-<h1 routerLink="/update">UPDATE</h1>
-<button mat-raised-button (click)="openDialog('800ms', '500ms')">
-  Delete My Account
-</button>
-<h1 routerLink="/expenses">Expenses</h1>
-<h1 routerLink="/income">Income</h1>
+</section>

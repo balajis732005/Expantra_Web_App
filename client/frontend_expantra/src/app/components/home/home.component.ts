@@ -2,19 +2,19 @@ import {Component, OnInit} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialog} from "@angular/material/dialog";
-import {DialogboxdeleteComponent} from "../dialogboxdelete/dialogboxdelete.component";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../store/state/app.state";
 import {userDetailsSelector} from "../../store/selector/userDetails.selctor";
 import {UserDetailsModel} from "../../models/userDetails.model";
 import {NetamountService} from "../../services/netamount/netamount.service";
 import {NetAmountResponseModel} from "../../models/NetAmountResponseModel";
+import {NavbarComponent} from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    RouterLink,MatButtonModule
+    RouterLink, MatButtonModule, NavbarComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit{
 
   netSavings! : number;
 
-  ngOnInit() {
+  ngOnInit() : void {
 
     let idFromState : number=-1;
 
@@ -53,14 +53,6 @@ export class HomeComponent implements OnInit{
         }
       }
     )
-  }
-
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DialogboxdeleteComponent, {
-      width : '250px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    })
   }
 
 }

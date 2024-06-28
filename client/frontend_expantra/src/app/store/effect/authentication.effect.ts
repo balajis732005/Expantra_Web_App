@@ -27,7 +27,7 @@ export class AuthenticationEffect {
           map((authenticationResponseDto) => {
             console.log(authenticationResponseDto);
             if(authenticationResponseDto!=null){
-              localStorage.setItem("jwtToken", authenticationResponseDto.jwtToken);
+              sessionStorage.setItem("jwtToken", authenticationResponseDto.jwtToken);
               this.router.navigate(["/home"]).then(status => true);
               return AuthenticationSuccessAction({
                 userId : authenticationResponseDto.userId,
