@@ -82,11 +82,19 @@ px-3 py-10">
 
     <div class="flex flex-col space-y-3">
       <label class="font-semibold md:text-xl">Password:</label>
-      <input type="text"
+      <input type="{{passType}}"
              name="password"
              formControlName="password"
              placeholder="Enter Your Password"
              class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+      <div class="flex space-x-2 px-6">
+        <input (click)="onPasswordShow()"
+               type="checkbox"
+               name="showPassword"
+               formControlName="showPassword"
+               class="h-5 w-5">
+        <label class="font-bold text-xl">Show Password</label>
+      </div>
     </div>
 
     <div class="flex flex-col space-y-3">

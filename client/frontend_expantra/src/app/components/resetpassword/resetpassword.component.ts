@@ -36,8 +36,20 @@ export class ResetpasswordComponent implements OnInit{
   }
 
   resetPasswordForm = new FormGroup({
-    newPassword : new FormControl("", [Validators.required])
+    newPassword : new FormControl("", [Validators.required]),
+    showPassword : new FormControl(false)
   })
+
+  passType : string = "password";
+
+  public onPasswordShow(){
+    console.log(this.resetPasswordForm.value.showPassword);
+    if(!this.resetPasswordForm.value.showPassword){
+      this.passType="text";
+    }else{
+      this.passType="password";
+    }
+  }
 
   public onResetPassword() {
 

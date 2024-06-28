@@ -35,7 +35,8 @@ export class UpdateComponent implements OnInit{
           gender: userDetails.gender,
           mobileNumber: userDetails.mobileNumber,
           email: userDetails.email,
-          password: ""
+          password: "",
+          showPassword: false
         })
       })
 
@@ -48,7 +49,19 @@ export class UpdateComponent implements OnInit{
     mobileNumber : new FormControl("",[Validators.required]),
     email : new FormControl("",[Validators.required,Validators.email]),
     password : new FormControl("",[Validators.required,Validators.minLength(6)]),
+    showPassword : new FormControl(false)
   })
+
+  passType : string = "password";
+
+  public onPasswordShow(){
+    console.log(this.updateForm.value.showPassword);
+    if(!this.updateForm.value.showPassword){
+      this.passType="text";
+    }else{
+      this.passType="password";
+    }
+  }
 
   public onUpdate() {
 

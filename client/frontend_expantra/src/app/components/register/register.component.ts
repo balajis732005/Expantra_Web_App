@@ -31,8 +31,20 @@ export class RegisterComponent {
     mobileNumber : new FormControl("",[Validators.required]),
     email : new FormControl("",[Validators.required,Validators.email]),
     password : new FormControl("",[Validators.required,Validators.minLength(6)]),
+    showPassword : new FormControl(false),
     role : new FormControl("",[Validators.required])
   })
+
+  passType : string = "password";
+
+  public onPasswordShow(){
+    console.log(this.registerForm.value.showPassword);
+    if(!this.registerForm.value.showPassword){
+      this.passType="text";
+    }else{
+      this.passType="password";
+    }
+  }
 
   public onRegister(){
 
