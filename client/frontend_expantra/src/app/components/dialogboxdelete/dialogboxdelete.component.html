@@ -1,9 +1,15 @@
+<section class="px-5 py-5 bg-gray-300 flex flex-col space-y-8 items-center">
+  <p class="text-xl font-bold">Would you like to delete your Account?</p>
+  <div class="flex w-full space-x-5">
+    <button mat-dialog-close (click)="onDelete()"
+      class="border-2 border-black text-white bg-red-500 w-1/2 px-3 py-3 rounded-3xl font-bold">
+      Delete
+    </button>
+    <button mat-dialog-close
+      class="border-2 border-black text-white bg-green-500 w-1/2 px-3 py-3 rounded-3xl font-bold">
+      cancel
+    </button>
+  </div>
+</section>
 
-<h2 mat-dialog-title>Delete Account</h2>
-<mat-dialog-content>
-  Would you like to delete your Account?
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close (click)="onDelete()">Delete</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>cancel</button>
-</mat-dialog-actions>
+

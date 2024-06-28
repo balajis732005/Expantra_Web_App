@@ -1,17 +1,78 @@
-<p>update works!</p>
-<form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
-  <h1>REGISTRATION</h1>
-  <LABEL>FIRSTNAME:</LABEL>
-  <input type="text" name="firstName" formControlName="firstName">
-  <LABEL>LASTNAME:</LABEL>
-  <input type="text" name="lastName" formControlName="lastName">
-  <LABEL>GENDER:</LABEL>
-  <input type="text" name="gender" formControlName="gender">
-  <LABEL>MOBILE NUMBER:</LABEL>
-  <input type="text" name="mobileNumber" formControlName="mobileNumber">
-  <label >EMAIL:</label>
-  <input type="text" name="email" formControlName="email">
-  <label>PASSWORD:</label>
-  <input type="text" name="password" formControlName="password">
-  <button>UPDATE</button>
+<app-navbar class="w-full fixed top-0 border-b-2 border-white"></app-navbar>
+<div class="mt-16"></div>
+
+<section class="w-[100%] h-[100%] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex flex-col
+    px-3 py-10">
+
+  <p class="text-2xl font-bold text-center">Update Profile</p>
+
+<form [formGroup]="updateForm" (ngSubmit)="onUpdate()"
+  class="flex flex-col space-y-5 md:items-center md:mx-auto">
+  <p class="text-center text-xl font-bold">Here You Can Update Your Details</p>
+
+  <div class="flex max-xl:flex-col space-y-3 xl:space-x-5">
+
+    <div class="flex flex-col space-y-2 xl:mt-3">
+      <label class="font-semibold md:text-xl">First Name:</label>
+      <input type="text"
+             name="firstName"
+             formControlName="firstName"
+             placeholder="Is You Want to Update First Name ?"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+
+    <div class="flex flex-col space-y-2">
+      <label class="font-semibold md:text-xl">Last Name:</label>
+      <input type="text"
+             name="lastName"
+             formControlName="lastName"
+             placeholder="Is You Want to Update Last Name ?"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+
+  </div>
+
+  <div class="flex max-xl:flex-col space-y-3 xl:space-x-5">
+    <div class="flex flex-col space-y-2 xl:mt-3">
+      <label class="font-semibold md:text-xl">Gender:</label>
+      <input type="text"
+             name="gender"
+             formControlName="gender"
+             placeholder="Is You Want to Update Gender ?"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+
+    </div>
+    <div class="flex flex-col space-y-2">
+      <label class="font-semibold md:text-xl">Mobile Number:</label>
+      <input type="text"
+             name="mobileNumber"
+             formControlName="mobileNumber"
+             placeholder="Is You Want to Update Mobile Number ?"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+  </div>
+  <div class="flex max-xl:flex-col space-y-3 xl:space-x-5">
+    <div class="flex flex-col space-y-2 xl:mt-3">
+      <label class="font-semibold md:text-xl">Email:</label>
+      <input type="text"
+             name="email"
+             formControlName="email"
+             placeholder="Is You Want to Update Email ?"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+    <div class="flex flex-col space-y-2">
+      <label class="font-semibold md:text-xl">Password:</label>
+      <input type="text"
+             name="password"
+             formControlName="password"
+             placeholder="Is You Want to Update Password ?"
+             class="h-12 px-2 border-2 border-black rounded-2xl md:w-96 lg:h-16 lg:w-[450px]">
+    </div>
+  </div>
+  <button class="h-12 w-24 bg-black rounded-full text-white font-bold px-5 py-3 items-center mx-auto
+    hover:bg-blue-600">
+    Update
+  </button>
 </form>
+
+</section>

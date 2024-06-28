@@ -36,23 +36,23 @@ export class HomeComponent implements OnInit{
 
   ngOnInit() : void {
 
-    let idFromState : number=-1;
-
-    this.store.select(userDetailsSelector)
-      .subscribe((userDetails: UserDetailsModel) => {
-        console.log(userDetails);
-        idFromState=userDetails.userId;
-      })
-
-    this.netAmountService.getNetAmount(idFromState).subscribe(
-      {
-        next: (netAmountResponse : NetAmountResponseModel) => {
-          this.netExpenses=netAmountResponse.netExpense;
-          this.netIncome=netAmountResponse.netIncome;
-          this.netSavings=this.netIncome-this.netExpenses;
-        }
-      }
-    )
+    // let idFromState : number=-1;
+    //
+    // this.store.select(userDetailsSelector)
+    //   .subscribe((userDetails: UserDetailsModel) => {
+    //     console.log(userDetails);
+    //     idFromState=userDetails.userId;
+    //   })
+    //
+    // this.netAmountService.getNetAmount(idFromState).subscribe(
+    //   {
+    //     next: (netAmountResponse : NetAmountResponseModel) => {
+    //       this.netExpenses=netAmountResponse.netExpense;
+    //       this.netIncome=netAmountResponse.netIncome;
+    //       this.netSavings=this.netIncome-this.netExpenses;
+    //     }
+    //   }
+    // )
   }
 
 }

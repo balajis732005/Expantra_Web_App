@@ -1,14 +1,53 @@
-<form [formGroup]="expenseUpdateForm">
-  <label>EXPENSE NAME :</label>
-  <input type="text" formControlName="expenseName">
-  <label>EXPENSE DESCRIPTION :</label>
-  <input type="text" formControlName="expenseDescription">
-  <label>EXPENSE CATEGORY :</label>
-  <input type="text" formControlName="expenseCategory">
-  <label>EXPENSE AMOUNT :</label>
-  <input type="text" formControlName="expenseAmount">
-  <label>EXPENSE CREATED BY :</label>
-  <input type="text" formControlName="expenseCreatedBy">
-  <button mat-dialog-close (click)="onUpdateExpense()">UPDATE</button>
-  <button mat-dialog-close>CANCEL</button>
-</form>
+<section class="px-5 py-5 bg-gray-300 flex flex-col space-y-8 items-center">
+
+  <p class="text-xl font-bold text-center">Create Your Expense</p>
+
+  <form [formGroup]="expenseUpdateForm"
+        class="flex flex-col space-y-2 w-full">
+    <label class="font-semibold">Expense Name :</label>
+    <input type="text"
+           name="expenseName"
+           formControlName="expenseName"
+           placeholder="Is You Want to Update Expense Name"
+           class="rounded-2xl border-2 border-black px-2 py-2">
+    <label class="font-semibold">Expense Description :</label>
+    <input type="text"
+           name="expenseDescription"
+           formControlName="expenseDescription"
+           placeholder="Is You Want to Update Expense Description"
+           class="rounded-2xl border-2 border-black px-2 py-2">
+    <label class="font-semibold">Expense Category :</label>
+    <input type="text"
+           name="expenseCategory"
+           formControlName="expenseCategory"
+           placeholder="Is You Want to Update Expense Category"
+           class="rounded-2xl border-2 border-black px-2 py-2">
+    <label class="font-semibold">Expense Amount :</label>
+    <input type="text"
+           name="expenseAmount"
+           formControlName="expenseAmount"
+           placeholder="Is You Want to Update Expense Amount"
+           class="rounded-2xl border-2 border-black px-2 py-2">
+    <label class="font-semibold">Expense CreatedBy :</label>
+    <input type="text"
+           name="expenseCreatedBy"
+           formControlName="expenseCreatedBy"
+           placeholder="Is You Want to Update Expense CreatedBy"
+           class="rounded-2xl border-2 border-black px-2 py-2">
+
+    <div class="flex w-full space-x-5">
+      <button mat-dialog-close (click)="onUpdateExpense()"
+              class="border-2 border-black text-white bg-blue-500 w-1/2 px-3 py-3 rounded-3xl font-bold"
+      >
+        Update
+      </button>
+      <button mat-dialog-close
+              class="border-2 border-black text-white bg-red-500 w-1/2 px-3 py-3 rounded-3xl font-bold"
+      >
+        CANCEL
+      </button>
+    </div>
+  </form>
+
+</section>
+

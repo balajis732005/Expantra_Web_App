@@ -6,12 +6,14 @@ import {UpdateRequestModel} from "../../models/UpdateRequestModel";
 import {userDetailsSelector} from "../../store/selector/userDetails.selctor";
 import {UserDetailsModel} from "../../models/userDetails.model";
 import {UpdateAction} from "../../store/action/update.action";
+import {NavbarComponent} from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-update',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NavbarComponent
   ],
   templateUrl: './update.component.html',
   styleUrl: './update.component.css'

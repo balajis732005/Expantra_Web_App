@@ -1,14 +1,55 @@
-<form [formGroup]="incomeUpdateForm">
-  <label>INCOME NAME :</label>
-  <input type="text" formControlName="incomeName">
-  <label>INCOME DESCRIPTION :</label>
-  <input type="text" formControlName="incomeDescription">
-  <label>INCOME CATEGORY :</label>
-  <input type="text" formControlName="incomeCategory">
-  <label>INCOME AMOUNT :</label>
-  <input type="text" formControlName="incomeAmount">
-  <label>INCOME CREATED BY :</label>
-  <input type="text" formControlName="incomeCreatedBy">
-  <button mat-dialog-close (click)="onUpdateIncome()">UPDATE</button>
-  <button mat-dialog-close>CANCEL</button>
-</form>
+
+<section class="px-5 py-5 bg-gray-300 flex flex-col space-y-8 items-center">
+
+  <p class="text-xl font-bold text-center">Create Your Income</p>
+
+  <form [formGroup]="incomeUpdateForm"
+        class="flex flex-col space-y-2 w-full">
+
+    <label class="font-semibold">Income Name :</label>
+    <input type="text"
+           name="incomeName"
+           formControlName="incomeName"
+           placeholder="Is You Want to Update Income Name"
+           class="rounded-2xl border-2 border-black px-2 py-2">
+
+    <label class="font-semibold">Income Description :</label>
+    <input type="text"
+           name="incomeDescription"
+           formControlName="incomeDescription"
+           placeholder="Is You Want to Update Income Description"
+           class="rounded-2xl border-2 border-black px-2 py-2">
+    <label class="font-semibold">Income Category :</label>
+    <input type="text"
+           name="incomeCategory"
+           formControlName="incomeCategory"
+           placeholder="Is You Want to Update Income Category"
+           class="rounded-2xl border-2 border-black px-2 py-2">
+    <label class="font-semibold">Income Amount :</label>
+    <input type="text"
+           name="incomeAmount"
+           formControlName="incomeAmount"
+           placeholder="Is You Want to Update Income Amount"
+           class="rounded-2xl border-2 border-black px-2 py-2">
+    <label class="font-semibold">Income createdBy :</label>
+    <input type="text"
+           name="incomeCreatedBy"
+           formControlName="incomeCreatedBy"
+           placeholder="Is You Want to Update Income CreatedBy"
+           class="rounded-2xl border-2 border-black px-2 py-2">
+    <div class="flex w-full space-x-5">
+      <button mat-dialog-close (click)="onUpdateIncome()"
+              class="border-2 border-black text-white bg-blue-500 w-1/2 px-3 py-3 rounded-3xl font-bold"
+      >
+        Update
+      </button>
+      <button mat-dialog-close
+              class="border-2 border-black text-white bg-red-500 w-1/2 px-3 py-3 rounded-3xl font-bold"
+      >
+        CANCEL
+      </button>
+    </div>
+  </form>
+
+</section>
+

@@ -12,20 +12,63 @@ import {UpdateincomedialogboxComponent} from "../updateincomedialogbox/updateinc
 import {DeleteincomedialogboxComponent} from "../deleteincomedialogbox/deleteincomedialogbox.component";
 import {IncomeService} from "../../services/income/income.service";
 import {NgForOf} from "@angular/common";
+import {NavbarComponent} from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-income',
   standalone: true,
-  imports: [
-    NgForOf,
-    ReactiveFormsModule
-  ],
+    imports: [
+        NgForOf,
+        ReactiveFormsModule,
+        NavbarComponent
+    ],
   templateUrl: './income.component.html',
   styleUrl: './income.component.css'
 })
 export class IncomeComponent implements OnInit{
 
-  displayIncome : IncomeReadResponseModel[] = [];
+  displayIncome : IncomeReadResponseModel[] = [
+    {
+      "incomeId": 3,
+      "incomeName": "IT",
+      "incomeDescription": "I get some side income form IT Company",
+      "incomeCategory": "SideIncome",
+      "incomeAmount": 5054634.0,
+      "incomeCreatedBy": "MySelf",
+      "incomeCreatedDate": "Wed, Jun 19 2024 21:34:59",
+      "incomeLastModifiedDate": ""
+    },
+    {
+      "incomeId": 4,
+      "incomeName": "IT",
+      "incomeDescription": "I get some side income form IT Company",
+      "incomeCategory": "SideIncome",
+      "incomeAmount": 5054634.456,
+      "incomeCreatedBy": "MySelf",
+      "incomeCreatedDate": "Wed, Jun 19 2024 21:35:04",
+      "incomeLastModifiedDate": ""
+    },
+    {
+      "incomeId": 2,
+      "incomeName": "YAAtube",
+      "incomeDescription": "I get some side income form youtube at home",
+      "incomeCategory": "SideIncome",
+      "incomeAmount": 5000.0,
+      "incomeCreatedBy": "MySelf",
+      "incomeCreatedDate": "Wed, Jun 19 2024 21:34:34",
+      "incomeLastModifiedDate": ""
+    },
+    {
+      "incomeId": 1,
+      "incomeName": "Youtube",
+      "incomeDescription": "I get some side income form youtube at home",
+      "incomeCategory": "SideIncome",
+      "incomeAmount": 500.0,
+      "incomeCreatedBy": "MySelf",
+      "incomeCreatedDate": "Wed, Jun 19 2024 21:34:14",
+      "incomeLastModifiedDate": ""
+    }
+  ];
 
   constructor(
     private incomeService : IncomeService,
@@ -48,7 +91,7 @@ export class IncomeComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.apiCall(false);
+    //this.apiCall(false);
   }
 
   public apiCall(userReadIncome: boolean) {
