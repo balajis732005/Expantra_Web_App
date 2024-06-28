@@ -4,6 +4,7 @@ import {RegisterRequestModel} from "../../models/RegisterRequest.model";
 import {RegisterService} from "../../services/Register/register.service";
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
 import {Router, RouterLink} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterComponent {
 
   constructor(
     private registerService: RegisterService,
-    private router : Router
+    private router : Router,
+    private toastrService : ToastrService,
   ) {
   }
 
@@ -62,11 +64,13 @@ export class RegisterComponent {
     this.registerService.registerUser(registerRequest).subscribe(
       {
         next : (positiveResponseDto : PositiveResponseModel) => {
+          this.toastrService.success("verify Your Email with OTP","Success");
           this.router.navigate(['/register-verify'],
             {queryParams: {data: this.registerForm.value.email}}).then(status => true);
         },
         error: (errorResponse : Error) => {
-          console.log(errorResponse.message);
+          this.toastrService.error("Invalid Register Credentials","Error");
+          console.log(errorResponse);
         }
       }
     )

@@ -4,6 +4,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {ResetPasswordModel} from "../../models/ResetPassword.model";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-resetpassword',
@@ -21,6 +22,7 @@ export class ResetpasswordComponent implements OnInit{
     private activatedRouter: ActivatedRoute,
     private router : Router,
     private forgetpasswordService: ForgetPasswordService,
+    private toastrService : ToastrService
   ) {
   }
 
@@ -61,9 +63,11 @@ export class ResetpasswordComponent implements OnInit{
     this.forgetpasswordService.passwordReset(resetPassword).subscribe(
       {
         next : (positiveResponseDto : PositiveResponseModel) => {
+          this.toastrService.success("Password Changed Successfully","Success");
           this.router.navigate(['/authenticate']).then(status => true);
         },
         error : (errorResponse : Error) => {
+          this.toastrService.error("Reset Password Process Failed","Error");
           console.log(errorResponse.message);
         }
       }

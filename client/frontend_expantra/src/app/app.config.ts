@@ -12,6 +12,8 @@ import {AuthenticationEffect} from "./store/effect/authentication.effect";
 import {metaReducers, reducers} from "./store/reducer/main.reducer";
 import {UpdateEffect} from "./store/effect/update.effect";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {provideToastr} from "ngx-toastr";
+import {provideAnimations} from "@angular/platform-browser/animations";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +22,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([httpInterceptor]),withFetch()),
     provideStore(reducers,{metaReducers}),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects([AuthenticationEffect,UpdateEffect]), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync()
+    provideEffects([AuthenticationEffect,UpdateEffect]),
+    provideAnimationsAsync(),
+    provideToastr(),
+    provideAnimations()
   ]
 };

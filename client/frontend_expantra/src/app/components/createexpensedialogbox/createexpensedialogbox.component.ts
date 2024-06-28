@@ -8,6 +8,7 @@ import {AppState} from "../../store/state/app.state";
 import {Store} from "@ngrx/store";
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
 import {MatDialogClose} from "@angular/material/dialog";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-createexpensedialogbox',
@@ -24,7 +25,8 @@ export class CreateexpensedialogboxComponent {
 
   constructor(
     private expenseService : ExpensesService,
-    private store : Store<AppState>
+    private store : Store<AppState>,
+    private toastrService : ToastrService
   ) {
   }
 
@@ -45,6 +47,7 @@ export class CreateexpensedialogboxComponent {
       .subscribe((userDetails: UserDetailsModel) => {
         console.log(userDetails);
         idFromState=userDetails.userId;
+        emailFromState=userDetails.email;
       })
 
     let expenseCreateRequest : ExpensesCreateRequestModel ={
@@ -60,9 +63,10 @@ export class CreateexpensedialogboxComponent {
     this.expenseService.expenseCreate(expenseCreateRequest).subscribe(
       {
         next: (positiveResponseDto : PositiveResponseModel) => {
-
+          this.toastrService.success("Expense successfully created","Success");
         },
         error: (errorResponse : Error) => {
+          this.toastrService.error("Creating expense is not Done","Error");
           console.log(errorResponse);
         }
       }

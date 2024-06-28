@@ -15,5 +15,9 @@ items-center">
           (click)="openDialog('800ms', '500ms')">
     Delete
   </button>
-  <button class="bg-gray-300 border-2 border-white h-1/2 font-bold md:py-5 md:text-xl hover:bg-black hover:text-white" routerLink="/">Log Out</button>
+  <button class="bg-gray-300 border-2 border-white h-1/2 font-bold md:py-5 md:text-xl hover:bg-black hover:text-white"
+          routerLink="/"
+  (click)="clearToken()">
+    Log Out
+  </button>
 </section>

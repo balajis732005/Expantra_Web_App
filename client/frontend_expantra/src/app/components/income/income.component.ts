@@ -13,6 +13,7 @@ import {DeleteincomedialogboxComponent} from "../deleteincomedialogbox/deleteinc
 import {IncomeService} from "../../services/income/income.service";
 import {NgForOf} from "@angular/common";
 import {NavbarComponent} from "../navbar/navbar.component";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-income',
@@ -27,53 +28,13 @@ import {NavbarComponent} from "../navbar/navbar.component";
 })
 export class IncomeComponent implements OnInit{
 
-  displayIncome : IncomeReadResponseModel[] = [
-    {
-      "incomeId": 3,
-      "incomeName": "IT",
-      "incomeDescription": "I get some side income form IT Company",
-      "incomeCategory": "SideIncome",
-      "incomeAmount": 5054634.0,
-      "incomeCreatedBy": "MySelf",
-      "incomeCreatedDate": "Wed, Jun 19 2024 21:34:59",
-      "incomeLastModifiedDate": ""
-    },
-    {
-      "incomeId": 4,
-      "incomeName": "IT",
-      "incomeDescription": "I get some side income form IT Company",
-      "incomeCategory": "SideIncome",
-      "incomeAmount": 5054634.456,
-      "incomeCreatedBy": "MySelf",
-      "incomeCreatedDate": "Wed, Jun 19 2024 21:35:04",
-      "incomeLastModifiedDate": ""
-    },
-    {
-      "incomeId": 2,
-      "incomeName": "YAAtube",
-      "incomeDescription": "I get some side income form youtube at home",
-      "incomeCategory": "SideIncome",
-      "incomeAmount": 5000.0,
-      "incomeCreatedBy": "MySelf",
-      "incomeCreatedDate": "Wed, Jun 19 2024 21:34:34",
-      "incomeLastModifiedDate": ""
-    },
-    {
-      "incomeId": 1,
-      "incomeName": "Youtube",
-      "incomeDescription": "I get some side income form youtube at home",
-      "incomeCategory": "SideIncome",
-      "incomeAmount": 500.0,
-      "incomeCreatedBy": "MySelf",
-      "incomeCreatedDate": "Wed, Jun 19 2024 21:34:14",
-      "incomeLastModifiedDate": ""
-    }
-  ];
+  displayIncome : IncomeReadResponseModel[] = [];
 
   constructor(
     private incomeService : IncomeService,
     private store : Store<AppState>,
     public dialog: MatDialog,
+    private toastrService : ToastrService
   ) {
   }
 
@@ -91,7 +52,7 @@ export class IncomeComponent implements OnInit{
   }
 
   ngOnInit() {
-    //this.apiCall(false);
+    this.apiCall(false);
   }
 
   public apiCall(userReadIncome: boolean) {
@@ -124,8 +85,10 @@ export class IncomeComponent implements OnInit{
         next: (userWantIncome : IncomeReadResponseModel[]) => {
           console.log("income : ",userWantIncome)
           this.displayIncome=userWantIncome;
+          this.toastrService.info("Click Submit Button to view Updated Incomes","Information");
         },
         error: (errorResponse) => {
+          this.toastrService.error("Error of getting Incomes","Error");
           console.log(errorResponse);
         }
       }

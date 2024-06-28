@@ -4,6 +4,7 @@ import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {VerificationRequestModel} from "../../models/VerificationRequest.model";
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
 import {RegisterService} from "../../services/Register/register.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-register-verify',
@@ -22,6 +23,7 @@ export class RegisterVerifyComponent implements OnInit{
     private activatedRouter: ActivatedRoute,
     private router : Router,
     private registerService : RegisterService,
+    private toastrService : ToastrService
   ) {
   }
 
@@ -51,9 +53,11 @@ export class RegisterVerifyComponent implements OnInit{
     this.registerService.verifyRegisterActivationCode(verificationRequest).subscribe(
       {
         next: (positiveResponse : PositiveResponseModel) => {
+          this.toastrService.success("Registration Process Completed Successfully","Success");
           this.router.navigate(['/authenticate']).then(status => true);
         },
         error: (errorResponse : Error) => {
+          this.toastrService.error("Invalid Verification Code or Credentials","Error");
           console.log(errorResponse);
         }
       }

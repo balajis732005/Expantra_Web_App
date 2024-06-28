@@ -9,6 +9,7 @@ import {userDetailsSelector} from "../../store/selector/userDetails.selctor";
 import {UserDetailsModel} from "../../models/userDetails.model";
 import {IncomeUpdateRequestModel} from "../../models/IncomeUpdateRequest.model";
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-updateincomedialogbox',
@@ -25,7 +26,8 @@ export class UpdateincomedialogboxComponent implements OnInit{
 
   constructor(
     private incomeService : IncomeService,
-    private store : Store<AppState>
+    private store : Store<AppState>,
+    private toastrService : ToastrService
   ) {
   }
 
@@ -77,8 +79,10 @@ export class UpdateincomedialogboxComponent implements OnInit{
     this.incomeService.incomeUpdate(incomeToUpdate).subscribe(
       {
         next: (positiveResponse : PositiveResponseModel) => {
+          this.toastrService.success("Updated Successfully Click Submit Button to view Updated income","Success");
         },
         error: (errorResponse : Error) => {
+          this.toastrService.error("Error in updating the Income","Error");
           console.log(errorResponse);
         }
       }

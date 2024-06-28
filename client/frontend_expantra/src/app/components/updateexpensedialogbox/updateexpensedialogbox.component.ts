@@ -9,6 +9,7 @@ import {UserDetailsModel} from "../../models/userDetails.model";
 import {AppState} from "../../store/state/app.state";
 import {Store} from "@ngrx/store";
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-updateexpensedialogbox',
@@ -25,7 +26,8 @@ export class UpdateexpensedialogboxComponent implements OnInit{
 
   constructor(
     private expensesService : ExpensesService,
-    private store : Store<AppState>
+    private store : Store<AppState>,
+    private toastrService : ToastrService
   ) {
   }
 
@@ -77,8 +79,10 @@ export class UpdateexpensedialogboxComponent implements OnInit{
     this.expensesService.expenseUpdate(expenseToUpdate).subscribe(
       {
         next: (positiveResponse : PositiveResponseModel) => {
+          this.toastrService.success("Updated Successfully Click Submit Button to view Updated Expenses","Success");
         },
         error: (errorResponse : Error) => {
+          this.toastrService.error("Error in updating the Expense","Error");
           console.log(errorResponse);
         }
       }

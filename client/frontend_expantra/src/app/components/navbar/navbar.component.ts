@@ -35,4 +35,8 @@ export class NavbarComponent {
     })
   }
 
+  public clearToken(){
+    sessionStorage.clear();
+  }
+
 }

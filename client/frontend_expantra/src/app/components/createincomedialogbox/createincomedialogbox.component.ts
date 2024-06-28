@@ -8,6 +8,7 @@ import {userDetailsSelector} from "../../store/selector/userDetails.selctor";
 import {UserDetailsModel} from "../../models/userDetails.model";
 import {IncomeCreateRequestModel} from "../../models/IncomeCreateRequest.model";
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-createincomedialogbox',
@@ -23,7 +24,8 @@ export class CreateincomedialogboxComponent {
 
   constructor(
     private incomeService : IncomeService,
-    private store : Store<AppState>
+    private store : Store<AppState>,
+    private toastrService : ToastrService
   ) {
   }
 
@@ -44,6 +46,7 @@ export class CreateincomedialogboxComponent {
       .subscribe((userDetails: UserDetailsModel) => {
         console.log(userDetails);
         idFromState=userDetails.userId;
+        emailFromState=userDetails.email;
       })
 
     let incomeCreateRequest : IncomeCreateRequestModel ={
@@ -59,9 +62,10 @@ export class CreateincomedialogboxComponent {
     this.incomeService.incomeCreate(incomeCreateRequest).subscribe(
       {
         next: (positiveResponseDto : PositiveResponseModel) => {
-
+          this.toastrService.success("Income successfully created","Success");
         },
         error: (errorResponse : Error) => {
+          this.toastrService.error("Creating income is not Done","Error");
           console.log(errorResponse);
         }
       }

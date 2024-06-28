@@ -5,6 +5,7 @@ import {ForgetPasswordEmailSendModel} from "../../models/ForgetPasswordEmailSend
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
 import {VerificationRequestModel} from "../../models/VerificationRequest.model";
 import {Router, RouterLink} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-forgetpassword',
@@ -20,7 +21,8 @@ export class ForgetpasswordComponent {
 
   constructor(
     private forgetpasswordService: ForgetPasswordService,
-    private router: Router
+    private router: Router,
+    private toastrService : ToastrService
   ) {
   }
 
@@ -60,11 +62,13 @@ export class ForgetpasswordComponent {
     this.forgetpasswordService.forgetPasswordVerify(forgetPasswordVerify).subscribe(
       {
         next : (positiveResponseDto : PositiveResponseModel) => {
+          this.toastrService.success("Email has been sent Successfully","Success");
           this.router.navigate(['/resetpassword'],
             {queryParams:{data:this.emailForm.value.email}})
             .then(status => true);
         },
         error : (error : Error) => {
+          this.toastrService.error("Email sent process Failed","Error");
           console.log(error.message);
         }
       }

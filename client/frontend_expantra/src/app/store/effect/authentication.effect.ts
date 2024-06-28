@@ -8,6 +8,7 @@ import {
 } from "../action/authentication.action";
 import {catchError, map, mergeMap, of} from "rxjs";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable()
 
@@ -16,7 +17,8 @@ export class AuthenticationEffect {
   constructor(
     private actions$ : Actions,
     private authenticationService : AuthenticateService,
-    private router : Router
+    private router : Router,
+    private toastrService : ToastrService
   ) { }
 
   authenticationEffect$  = createEffect(() =>
@@ -28,6 +30,7 @@ export class AuthenticationEffect {
             console.log(authenticationResponseDto);
             if(authenticationResponseDto!=null){
               sessionStorage.setItem("jwtToken", authenticationResponseDto.jwtToken);
+              this.toastrService.success("Authenticated successfully","Success");
               this.router.navigate(["/home"]).then(status => true);
               return AuthenticationSuccessAction({
                 userId : authenticationResponseDto.userId,
@@ -40,10 +43,12 @@ export class AuthenticationEffect {
                 role : authenticationResponseDto.role
               });
             } else{
+              this.toastrService.error("Authentication Failed","Error");
               return AuthenticationFailAction({errorMessage : "AuthenticationFail Due to Data Null"});
             }
           }),
           catchError((errorResponse) => {
+            this.toastrService.error("Authentication Failed","Error");
             return of(AuthenticationFailAction({errorMessage : errorResponse.message}));
           })
         )

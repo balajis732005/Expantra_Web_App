@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../store/state/app.state";
@@ -17,11 +17,15 @@ import {NgIf} from "@angular/common";
   styleUrl: './authenticate.component.css'
 })
 
-export class AuthenticateComponent {
+export class AuthenticateComponent implements OnInit{
 
   constructor(
     private store: Store<AppState>,
   ) {
+  }
+
+  ngOnInit() {
+    sessionStorage.clear();
   }
 
   authenticateForm = new FormGroup(

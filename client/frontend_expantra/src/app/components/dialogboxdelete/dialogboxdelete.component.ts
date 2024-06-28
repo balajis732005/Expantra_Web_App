@@ -7,6 +7,7 @@ import {DeleteService} from "../../services/delete/delete.service";
 import {PositiveResponseModel} from "../../models/PositiveResponse.model";
 import {Router} from "@angular/router";
 import {MatDialogClose} from "@angular/material/dialog";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-dialogboxdelete',
@@ -22,7 +23,8 @@ export class DialogboxdeleteComponent {
   constructor(
     private store : Store<AppState>,
     private deleteService : DeleteService,
-    private router : Router
+    private router : Router,
+    private toastrService : ToastrService,
   ) {
   }
 
@@ -39,9 +41,11 @@ export class DialogboxdeleteComponent {
     this.deleteService.deleteUser(idFromState).subscribe(
       {
         next: (positiveResponseDto : PositiveResponseModel) => {
+          this.toastrService.success("Account Deleted Successfully","Success");
           this.router.navigate(['']).then(status => true);
         },
         error : (error : Error) => {
+          this.toastrService.error("Error deleting user details","Error");
           console.log(error);
         }
       }
